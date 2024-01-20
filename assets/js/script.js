@@ -78,6 +78,8 @@ for (let index = 9; index < 18; index++) {
 /*                         Get info from Local Storage                        */
 /* -------------------------------------------------------------------------- */
 var itemsInLocalStorage = localStorage.getItem("WorkDay");
+
+/* ------------------------ Nothing in Local Storage ------------------------ */
 if (itemsInLocalStorage === null) {
     console.log("Nothing stored in local storage");
     var storedInfo = [
@@ -119,6 +121,8 @@ if (itemsInLocalStorage === null) {
         },
     ]
 }
+
+/* ------------------- Something already in Local Storage ------------------- */
 else {
     console.log("There is something stored in local storage");
     var storedInfo = JSON.parse(itemsInLocalStorage);
