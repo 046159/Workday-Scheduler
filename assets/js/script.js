@@ -1,46 +1,4 @@
 /* -------------------------------------------------------------------------- */
-/*                 An array to hold text for each hourly slot                 */
-/* -------------------------------------------------------------------------- */
-var storedInfo = [
-    {
-        time: "9",
-        text: "Nine",
-    },
-    {
-        time: "10",
-        text: "",
-    },
-    {
-        time: "11",
-        text: "",
-    },
-    {
-        time: "12",
-        text: "",
-    },
-    {
-        time: "13",
-        text: "",
-    },
-    {
-        time: "14",
-        text: "",
-    },
-    {
-        time: "15",
-        text: "",
-    },
-    {
-        time: "16",
-        text: "",
-    },
-    {
-        time: "17",
-        text: "",
-    },
-]
-
-/* -------------------------------------------------------------------------- */
 /*                   Display today's date at top of the page                  */
 /* -------------------------------------------------------------------------- */
 
@@ -119,26 +77,71 @@ for (let index = 9; index < 18; index++) {
 /* -------------------------------------------------------------------------- */
 /*                         Get info from Local Storage                        */
 /* -------------------------------------------------------------------------- */
-
-
-/* -------------------------------------------------------------------------- */
-/*                       Display info from Local Storage                      */
-/* -------------------------------------------------------------------------- */
-$("#9").text("Test");
-
+var itemsInLocalStorage = localStorage.getItem("WorkDay");
+if (itemsInLocalStorage === null) {
+    console.log("Nothing stored in local storage");
+    var storedInfo = [
+        {
+            time: "9",
+            text: "Nine",
+        },
+        {
+            time: "10",
+            text: "",
+        },
+        {
+            time: "11",
+            text: "",
+        },
+        {
+            time: "12",
+            text: "",
+        },
+        {
+            time: "13",
+            text: "",
+        },
+        {
+            time: "14",
+            text: "",
+        },
+        {
+            time: "15",
+            text: "",
+        },
+        {
+            time: "16",
+            text: "",
+        },
+        {
+            time: "17",
+            text: "",
+        },
+    ]
+}
+else {
+    console.log("There is something stored in local storage");
+    var storedInfo = JSON.parse(itemsInLocalStorage);
+    console.log(storedInfo);
+    for (let k = 0; k < storedInfo.length; k++) {
+        elID = "#" + (k + 9);
+        console.log(elID);
+        $(elID).text(storedInfo[k].text);
+    }
+}
 
 /* -------------------------------------------------------------------------- */
 /*               Event Listener for when save button is pressed               */
 /* -------------------------------------------------------------------------- */
 var buttons = document.querySelectorAll('button')
 function handleButtonClick(event) {
-    // console.log(event);
-    console.log(event.target.id);
+    var buttonHourArray = (event.target.id.split("saveButton"));
+    var buttonHour = buttonHourArray[1];
+    var j = buttonHour - 9;
+    var textID = "#" + buttonHour;
+    storedInfo[j].text = ($(textID).val());
+    localStorage.setItem("WorkDay", JSON.stringify(storedInfo));
 }
 buttons.forEach(function (button) {
     button.addEventListener('click', handleButtonClick);
 });
-
-/* -------------------------------------------------------------------------- */
-/*                         Write info to Local Storage                        */
-/* -------------------------------------------------------------------------- */
