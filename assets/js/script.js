@@ -130,9 +130,10 @@ $("#9").text("Test");
 /* -------------------------------------------------------------------------- */
 /*               Event Listener for when save button is pressed               */
 /* -------------------------------------------------------------------------- */
-var buttons = document.querySelectorAll('.btn')
+var buttons = document.querySelectorAll('button')
 function handleButtonClick(event) {
-    console.log('Button clicked:', event.target.id);
+    // console.log(event);
+    console.log(event.target.id);
 }
 buttons.forEach(function (button) {
     button.addEventListener('click', handleButtonClick);
