@@ -145,6 +145,7 @@ function handleButtonClick(event) {
     var textID = "#" + buttonHour;
     storedInfo[j].text = ($(textID).val());
     localStorage.setItem("WorkDay", JSON.stringify(storedInfo));
+    
 }
 buttons.forEach(function (button) {
     button.addEventListener('click', handleButtonClick);
