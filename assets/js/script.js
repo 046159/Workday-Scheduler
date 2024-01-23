@@ -135,17 +135,22 @@ else {
 }
 
 /* -------------------------------------------------------------------------- */
-/*               Event Listener for when save button is pressed               */
+/*               Event Listener for when any button is pressed                */
 /* -------------------------------------------------------------------------- */
 var buttons = document.querySelectorAll('button')
 function handleButtonClick(event) {
-    var buttonHourArray = (event.target.id.split("saveButton"));
-    var buttonHour = buttonHourArray[1];
-    var j = buttonHour - 9;
-    var textID = "#" + buttonHour;
-    storedInfo[j].text = ($(textID).val());
-    localStorage.setItem("WorkDay", JSON.stringify(storedInfo));
-    
+
+    /* ------------------------- Save button was pressed ------------------------ */
+    if (event.target.id.includes("saveButton")) {
+        ;
+        var buttonHourArray = (event.target.id.split("saveButton"));
+        var buttonHour = buttonHourArray[1];
+        var j = buttonHour - 9;
+        var textID = "#" + buttonHour;
+        storedInfo[j].text = ($(textID).val());
+        localStorage.setItem("WorkDay", JSON.stringify(storedInfo));
+        $('.toast').toast('show');
+    }
 }
 buttons.forEach(function (button) {
     button.addEventListener('click', handleButtonClick);
