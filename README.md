@@ -24,6 +24,7 @@ The following websites provided valuable input into this challenge:
 * https://stackoverflow.com/
 * https://fontawesome.com/
 * https://api.jquery.com/
+* https://getbootstrap.com/docs/5.0/components/toasts/
 
 ## License
 
